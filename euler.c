@@ -33,34 +33,36 @@ int *fib (int n) {
     return numbers;
 }
 
-int sum_of_even_fib() {
-    int *fib_num;
-    int size = 4000000;
-    fib_num = fib(size);
 
-    int fib_array[1000000];
+int sumOfEvenFib() {
+    int *fibNum;
+    int size = 4000000;
+    fibNum = fib(size);
+
+    int fibArray[1000000];
 
     int i;
     int counter = 0;
     for (i = 0; i < size; i++) {
-        if (fib_num[i] >= size || fib_num[i] == 0) {
+        if (fibNum[i] >= size || fibNum[i] == 0) {
             break; 
         }
         else {
-            fib_array[counter] = fib_num[i];
+            fibArray[counter] = fibNum[i];
             counter++;
         }
     }
 
-    int even_sum = 0;
+    int evenSum = 0;
     for (i = 0; i < counter; i++) {
-        int fib_num = fib_array[i];
+        int fibNum = fibArray[i];
 
-        if (fib_num % 2 == 0) {
-            even_sum += fib_num; 
+        if (fibNum % 2 == 0) {
+            evenSum += fibNum; 
         }
     }
 
-    return even_sum;
+    return evenSum;
 }
+
 
