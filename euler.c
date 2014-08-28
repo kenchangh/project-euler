@@ -3,6 +3,9 @@
 
 #define LENGTH(x) (sizeof x / sizeof x[0])
 
+typedef int bool;
+enum { false, true };
+
 
 int *fib (int n) {
     int number;
@@ -64,5 +67,51 @@ int sumOfEvenFib() {
 
     return evenSum;
 }
+
+
+bool isPrimeNumber(int n) {
+    int i;
+    for (i = 2; i < n; i++) {
+        if (n % i == 0) {
+            return false; 
+        }
+    }
+    return true;
+}
+
+
+int largestPrimeFactor(int n) {
+    int primeFactors[100];
+    int arraySize = -1;
+
+    int i;
+    for (i = 1; i < n; i++) {
+        if (n % i == 0) {
+            if (isPrimeNumber(i)) {
+                arraySize++;
+                primeFactors[arraySize] = i;
+            } 
+        }
+    }
+
+    return primeFactors[arraySize];
+}
+
+
+int main() {
+    int number;
+    printf("Get largest prime factor of: ");
+    scanf("%d", &number);
+
+    printf("%d\n", largestPrimeFactor(number));
+    return 0;
+}
+
+
+
+
+
+
+
 
 
