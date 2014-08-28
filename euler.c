@@ -1,15 +1,12 @@
-# include <stdio.h>
-# include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-
-int len(int array[4000000]) {
-  return sizeof(array) / sizeof(int);
-}
+#define LENGTH(x) (sizeof x / sizeof x[0])
 
 
 int *fib (int n) {
   int number;
-  int* numbers = malloc(sizeof(int)*n);
+  int* numbers = malloc(sizeof(int) *n);
 
   numbers[0] = 0;
   numbers[1] = 1;
@@ -21,6 +18,11 @@ int *fib (int n) {
   for (i = 0; i < n; i++) {
     number = numbers[last] + numbers[last2];
 
+    // Break on before the limit
+    if (number >= n) {
+      break;
+    }
+
     numbers[last + 1] = number;
     last++;
     last2++;
@@ -31,30 +33,35 @@ int *fib (int n) {
   return numbers;
 }
 
-
-int *filter_even(int *array, int size) {
-  int* numbers = malloc(sizeof(int)*(size/2));
-}
-
-
 int main() {
   int *fib_num;
-  fib_num = fib(10);
+  int size = 4000000;
+  fib_num = fib(size);
+
+  int fib_array[1000000];
 
   int i;
-  printf("%d", len(fib_num));
-  for (i = 0; i < 10; i++) {
-    printf("%d\n", fib_num[i]);
+  int counter = 0;
+  for (i = 0; i < size; i++) {
+    if (fib_num[i] >= size || fib_num[i] == 0) {
+      break; 
+    }
+    else {
+      fib_array[counter] = fib_num[i];
+      counter++;
+    }
   }
+
+  int even_sum = 0;
+  for (i = 0; i < counter; i++) {
+    int fib_num = fib_array[i];
+
+    if (fib_num % 2 == 0) {
+      even_sum += fib_num; 
+    }
+  }
+  printf("%d", even_sum);
+
   return 0;
 }
-
-
-
-
-
-
-
-
-
 
