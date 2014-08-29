@@ -81,20 +81,20 @@ bool isPrimeNumber(int n) {
 
 
 int largestPrimeFactor(int n) {
-    int primeFactors[100];
-    int arraySize = -1;
+    int primeFactor, *primePtr;
+    primePtr = &primeFactor;
+    primePtr = malloc(*primePtr);
 
     int i;
     for (i = 1; i < n; i++) {
         if (n % i == 0) {
             if (isPrimeNumber(i)) {
-                arraySize++;
-                primeFactors[arraySize] = i;
+              *primePtr = i;
             } 
         }
     }
 
-    return primeFactors[arraySize];
+    return *primePtr;
 }
 
 
